@@ -1,0 +1,23 @@
+# Optional: PostgreSQL in Docker instead of `npm run db:local`.
+#   docker compose up -d
+# Matches the default DATABASE_URL in .env.example (port 54329, postgres/postgres).
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: campusconnect-postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: campusconnect
+      POSTGRES_INITDB_ARGS: --encoding=UTF8 --locale=C
+    ports:
+      - "54329:5432"
+    volumes:
+      - campusconnect-pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      retries: 10
+
+volumes:
+  campusconnect-pgdata:

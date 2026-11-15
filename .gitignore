@@ -1,0 +1,27 @@
+node_modules/
+dist/
+coverage/
+.env
+.env.*
+!.env.example
+
+# local embedded PostgreSQL data directory
+.pgdata/
+
+# uploaded documents (never commit user files)
+uploads/*
+!uploads/.gitkeep
+
+# generated import audit (contains roster IDs)
+db/seed/output/
+
+# test artefacts
+backend/test-uploads/
+frontend/test-results/
+playwright-report/
+
+*.log
+.DS_Store
+Thumbs.db
+.vscode/*
+!.vscode/extensions.json

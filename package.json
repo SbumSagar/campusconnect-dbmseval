@@ -1,0 +1,37 @@
+{
+  "name": "campusconnect",
+  "version": "1.0.0",
+  "private": true,
+  "description": "CampusConnect - Student Welfare Management System (DBMS course project, Group-15)",
+  "workspaces": [
+    "db",
+    "backend",
+    "frontend"
+  ],
+  "scripts": {
+    "db:local": "npm run local --workspace db",
+    "db:migrate": "npm run migrate --workspace db",
+    "db:import": "npm run import --workspace db",
+    "db:seed": "npm run seed --workspace db",
+    "db:setup": "npm run migrate --workspace db && npm run import --workspace db && npm run seed --workspace db",
+    "db:audit": "npm run audit --workspace db",
+    "db:sql": "npm run sql --workspace db --",
+    "db:reset:dev": "npm run reset --workspace db",
+    "dev:backend": "npm run dev --workspace backend",
+    "dev:frontend": "npm run dev --workspace frontend",
+    "dev": "concurrently -k -n api,web -c blue,magenta \"npm run dev --workspace backend\" \"npm run dev --workspace frontend\"",
+    "build": "npm run build --workspace backend && npm run build --workspace frontend",
+    "start": "npm run start --workspace backend",
+    "test:db": "npm run test --workspace db",
+    "test:backend": "npm run test --workspace backend",
+    "test:frontend": "npm run test --workspace frontend",
+    "test": "npm run test:db && npm run test:backend && npm run test:frontend",
+    "typecheck": "npm run typecheck --workspace backend && npm run typecheck --workspace frontend"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
